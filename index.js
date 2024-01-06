@@ -3,6 +3,9 @@ const env = require('dotenv');
 const cors = require('cors');
 const emailModel = require('./model/EmailModel');
 const connectDB = require('./Config/db');
+const AuthRoutes = require('./routes/userRoutes')
+const BlogRoutes = require('./routes/blogRoutes')
+const {protectedRoutes,RefreshUser,UpdateUser} = require('./controller/authController')
 
 env.config();
 const app = express();
@@ -17,8 +20,13 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 app.get('/', (req, res) => {
-  res.send('Hello');
+  res.send('Hello follt');
 });
+app.get('/about', (req, res) => res.send('About Page Route'));
+
+app.get('/portfolio', (req, res) => res.send('Portfolio Page Route'));
+
+app.get('/contact', (req, res) => res.send('Contact Page Route'));
 
 app.post('/email', async (req, res) => {
   const { email, name, message } = req.body;
@@ -66,5 +74,10 @@ function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
+
+app.use('/api/v1/auth',AuthRoutes)
+app.use(protectedRoutes)
+app.use('/api/v1/refresh',RefreshUser)
+app.use('/api/v1/blog',BlogRoutes)
 
 app.listen(PORT, () => console.log('Server running on port:', PORT));

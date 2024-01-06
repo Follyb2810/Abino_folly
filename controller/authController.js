@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('./../model/RegisterModel');
-const { HashPassword, ComparePassword } = require('../utils/bycrypt');
-const { JsonSignToken, JsonVerifyToken } = require('../utils/Jwt');
+const { HashPassword, ComparePassword } = require('./../utils/bycrypt');
+const { JsonSignToken, JsonVerifyToken } = require('./../utils/Jwt');
 
 const SignUp = async (req, res) => {
     try {
@@ -278,10 +278,8 @@ const Logout = async(req,res,next)=>{
 
 
 
-const getFolly = async (req, res) => {
-    res.send('hello folly');
-};
+
 
 module.exports = {
-    SignUp, getFolly, SignIn, RefreshUser, protectedRoutes,UpdateUser,ForgetPassword,Logout
+    SignUp,  SignIn, RefreshUser, protectedRoutes,UpdateUser,ForgetPassword,Logout
 };

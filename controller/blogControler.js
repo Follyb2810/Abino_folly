@@ -1,6 +1,8 @@
 const  mongoose  = require("mongoose");
-const BlogPost = require("../model/BlogModel");
-const User = require("../model/RegisterModel");
+const BlogPost = require("./../model/BlogModel");
+// const BlogPost = require("../model/BlogModel");
+;
+// const User = require("../model/RegisterModel");
 const objectId = mongoose.Types.ObjectId
 const GetAllBlogPosts = async (req, res, next) => {
     try {

@@ -74,10 +74,21 @@ function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
+// Authentication Routes
+app.use('/api/v1/auth', AuthRoutes);
 
-app.use('/api/v1/auth',AuthRoutes)
-app.use(protectedRoutes)
-app.use('/api/v1/refresh',RefreshUser)
-app.use('/api/v1/blog',BlogRoutes)
+// Middleware to check if the user is authenticated
+app.use(protectedRoutes);
+
+// Refresh Token Route
+app.use('/api/v1/refresh', RefreshUser);
+
+// Blog Routes (Accessible only after authentication)
+app.use('/api/v1/blog', BlogRoutes);
+
+// app.use('/api/v1/auth',AuthRoutes)
+// app.use(protectedRoutes)
+// app.use('/api/v1/refresh',RefreshUser)
+// app.use('/api/v1/blog',BlogRoutes)
 
 app.listen(PORT, () => console.log('Server running on port:', PORT));

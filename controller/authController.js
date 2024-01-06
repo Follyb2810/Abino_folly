@@ -131,7 +131,7 @@ const protectedRoutes = async (req, res, next) => {
         const token = req.headers.authorization || req.headers.Authorization;
                 // const token = req.header('x-auth-token');
         if (!token || !token.startsWith('Bearer ')) {
-            return res.status(401).json({ message: 'You have not logged in' });
+            return res.status(401).json({ message: 'No token, authorization denied' });
         }
 
         const accessToken = token.split(' ')[1];

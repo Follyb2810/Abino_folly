@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 app.get('/', (req, res) => {
-  res.send('Hello follt');
+  res.send('Hello folly');
 });
 app.get('/about', (req, res) => res.send('About Page Route'));
 

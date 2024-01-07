@@ -274,6 +274,10 @@ const Logout = async(req,res,next)=>{
    }
 }
 
+const folly = async(req,res)=>{
+    res.send('folly')
+}
+
 
 
 
@@ -281,5 +285,5 @@ const Logout = async(req,res,next)=>{
 
 
 module.exports = {
-    SignUp,  SignIn, RefreshUser, protectedRoutes,UpdateUser,ForgetPassword,Logout
+    SignUp,  SignIn, RefreshUser, protectedRoutes,UpdateUser,ForgetPassword,Logout,folly
 };

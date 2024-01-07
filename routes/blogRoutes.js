@@ -6,11 +6,18 @@ const {protectedRoutes} =require('./../controller/authController')
 const router = express.Router()
 
 
-router.route('/create-post')
-        .post(protectedRoutes,createBlog)
-router.route('/:id')
-                .put(protectedRoutes,UpdateBlog)
-                .delete(protectedRoutes,DeleteBlog)
+
+router.use(protectedRoutes);
+
+// Protected routes
+router.route('/create-post').post(createBlog);
+router.route('/:id').put(UpdateBlog).delete(DeleteBlog);
+
+// router.route('/create-post')
+//         .post(protectedRoutes,createBlog)
+// router.route('/:id')
+//                 .put(protectedRoutes,UpdateBlog)
+//                 .delete(protectedRoutes,DeleteBlog)
             
             
 

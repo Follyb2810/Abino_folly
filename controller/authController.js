@@ -60,9 +60,10 @@ const SignIn = async (req, res) => {
                 message: 'User does not exist',
             });
         }
-
+            console.log(userExist)
         const match = await ComparePassword(password, userExist.password);
         if (!match) return res.status(400).json({ message: 'Invalid credentials' });
+        console.log(match)
 
         if (match) {
             const accessToken = JsonSignToken({
@@ -98,7 +99,7 @@ const SignIn = async (req, res) => {
         }
     } catch (error) {
         console.error(error);
-        res.status(500).json({ status: 'error', message: 'Internal Server Error' });
+        res.status(500).json({ status: 'error', message: 'Internal Server Error',error:error.message });
     }
 };
 

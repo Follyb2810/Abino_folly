@@ -9,11 +9,12 @@ const {protectedRoutes,RefreshUser,UpdateUser} = require('./controller/authContr
 
 env.config();
 const app = express();
-app.use(cors());
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static('public'));
+// app.use(cors());
+app.use(cors({ origin : [ "http://localhost:8081"]}))
 
 const PORT = process.env.PORT || 5000;
 
@@ -90,5 +91,11 @@ app.use('/api/v1/auth', AuthRoutes);
 // app.use(protectedRoutes)
 // app.use('/api/v1/refresh',RefreshUser)
 app.use('/api/v1/blog',BlogRoutes)
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.header("Access-Control-Allow-Headers", "x-access-token, Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.listen(PORT, () => console.log('Server running on port:', PORT));

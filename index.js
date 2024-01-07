@@ -1,7 +1,7 @@
 const express = require('express');
 const env = require('dotenv');
 const cors = require('cors');
-const emailModel = require('./model/EmailModel');
+const {EmailModel,NewsletterModel} = require('./model/EmailModel');
 const connectDB = require('./Config/db');
 const AuthRoutes = require('./routes/userRoutes')
 const BlogRoutes = require('./routes/blogRoutes')
@@ -41,7 +41,7 @@ app.post('/email', async (req, res) => {
       return res.status(400).json({ error: 'All input fields are required' });
     }
 
-    const newEmail = new emailModel({ email, name, message });
+    const newEmail = new EmailModel({ email, name, message });
 
     await newEmail.save();
 
@@ -60,7 +60,7 @@ app.post('/newsletter', async (req, res) => {
   }
 
   try {
-    const newEmail = new emailModel({ email });
+    const newEmail = new NewsletterModel({ email });
 
     await newEmail.save();
 

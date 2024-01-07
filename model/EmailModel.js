@@ -1,27 +1,39 @@
-const mongoose = require('mongoose')
-
+const mongoose = require('mongoose');
 
 const EmailSchema = mongoose.Schema({
-    name:{
-        type:String,
-        require:[true,"your name is require"],
-        unique:true,
-        trim:true
+    name: {
+        type: String,
+        required: [true, "Your name is required"],
+        trim: true,
+        unique: true,
+        collation: { locale: 'en', strength: 2 } // Case-insensitive index
     },
-    email:{
-        type:String,
-        unique:true,
-        require:[true,"your email is require"]
+    email: {
+        type: String,
+        required: [true, "Your email is required"],
+        trim: true,
+        unique: true,
+        collation: { locale: 'en', strength: 2 } // Case-insensitive index
     },
-    message:{
-        type:String,
-        require:[true,"you are require to input message"],
-        min: [6, 'Must be at least 6 character'],
-        trim:true
+    message: {
+        type: String,
+        required: [true, "You are required to input a message"],
+        minlength: [6, 'Must be at least 6 characters'],
+        trim: true
     }
-})
+});
 
+const NewsletterSchema = mongoose.Schema({
+    email: {
+        type: String,
+        required: [true, "Your email is required"],
+        trim: true,
+        unique: true,
+        collation: { locale: 'en', strength: 2 } // Case-insensitive index
+    }
+});
 
+const EmailModel = mongoose.model('Email', EmailSchema);
+const NewsletterModel = mongoose.model('Newsletter', NewsletterSchema);
 
-const emaiSchema= mongoose.model('Email',EmailSchema)
-module.exports = emaiSchema
+module.exports = { EmailModel, NewsletterModel };

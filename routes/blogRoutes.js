@@ -7,17 +7,17 @@ const router = express.Router()
 
 
 
-router.use(protectedRoutes);
+// router.use(protectedRoutes);
 
-// Protected routes
-router.route('/create-post').post(createBlog);
-router.route('/:id').put(UpdateBlog).delete(DeleteBlog);
+// // Protected routes
+// router.route('/create-post').post(createBlog);
+// router.route('/:id').put(UpdateBlog).delete(DeleteBlog);
 
-// router.route('/create-post')
-//         .post(protectedRoutes,createBlog)
-// router.route('/:id')
-//                 .put(protectedRoutes,UpdateBlog)
-//                 .delete(protectedRoutes,DeleteBlog)
+router.route('/create-post')
+        .post(protectedRoutes,createBlog)
+router.route('/:id')
+                .put(protectedRoutes,UpdateBlog)
+                .delete(protectedRoutes,DeleteBlog)
             
             
 

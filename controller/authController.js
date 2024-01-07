@@ -60,10 +60,10 @@ const SignIn = async (req, res) => {
                 message: 'User does not exist',
             });
         }
-            console.log(userExist)
+            // console.log(userExist)
         const match = await ComparePassword(password, userExist.password);
         if (!match) return res.status(400).json({ message: 'Invalid credentials' });
-        console.log(match)
+        // console.log(match)
 
         if (match) {
             const accessToken = JsonSignToken({

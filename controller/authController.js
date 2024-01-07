@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('./../model/RegisterModel');
+const ObjectId = mongoose.Types.ObjectId
 const { HashPassword, ComparePassword } = require('./../utils/bycrypt');
 const { JsonSignToken, JsonVerifyToken } = require('./../utils/Jwt');
 
@@ -275,6 +276,29 @@ const Logout = async(req,res,next)=>{
    }
 }
 
+
+const SingleUser = async (req, res, next) => {
+    const id = req.query.id;
+
+    try {
+        if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: 'Invalid id' });
+        }
+
+        const checkUserExist = await User.findById(id);
+
+        if (!checkUserExist) {
+            return res.status(401).json({ message: "User does not exist" });
+        } else {
+            return res.status(200).json({ message: 'Success', data: checkUserExist });
+        }
+    } catch (error) {
+        // Handle any errors here
+        console.error(error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
 const folly = async(req,res)=>{
     res.send('folly')
 }
@@ -286,5 +310,5 @@ const folly = async(req,res)=>{
 
 
 module.exports = {
-    SignUp,  SignIn, RefreshUser, protectedRoutes,UpdateUser,ForgetPassword,Logout,folly
+    SignUp,  SignIn, RefreshUser, protectedRoutes,UpdateUser,ForgetPassword,Logout,folly,SingleUser
 };

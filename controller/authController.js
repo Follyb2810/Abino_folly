@@ -35,6 +35,7 @@ const SignUp = async (req, res) => {
             email: newUser.email,
             image: newUser.image,
             location: newUser.location,
+            id:newUser._id
         };
 
         // Send success response

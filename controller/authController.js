@@ -295,8 +295,8 @@ const SingleUser = async (req, res, next) => {
                 Age: checkUserExist.Age,
                 skin: checkUserExist.skin,
                 email: checkUserExist.email,
-                image: checkUserExist.image,
                 location: checkUserExist.location,
+                image: checkUserExist.image,
             } });
         }
     } catch (error) {

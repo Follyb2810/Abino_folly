@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
     },
     image:{
         type:String,
-        default:'https://uc365c96fb70b8dbf2b033315986.dl.dropboxusercontent.com/cd/0/inline/CK_VmWKmg1NHOdFnSw6oF0Fiv7-JrMw-76-MiuB68EfTwSoUeRMwtEVco-6L92SjXL0WpZd9XRVYzomSSDqPczMlGybtr0vm83kfiFOPRj6kn_SwrVo80MvuN7VSAVczLARMCFrNkqMIDLu3VduBJckd/file#',
+        default:'https://shorturl.at/cgCEU',
         trim:true,
     },
     email:{

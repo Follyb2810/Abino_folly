@@ -290,7 +290,14 @@ const SingleUser = async (req, res, next) => {
         if (!checkUserExist) {
             return res.status(401).json({ message: "User does not exist" });
         } else {
-            return res.status(200).json({ message: 'Success', data: checkUserExist });
+            return res.status(200).json({ message: 'Success', data: {
+                username: checkUserExist.username,
+                Age: checkUserExist.Age,
+                skin: checkUserExist.skin,
+                email: checkUserExist.email,
+                image: checkUserExist.image,
+                location: checkUserExist.location,
+            } });
         }
     } catch (error) {
         // Handle any errors here

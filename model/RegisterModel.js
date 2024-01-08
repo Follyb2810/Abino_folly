@@ -45,7 +45,10 @@ const UserSchema = new mongoose.Schema({
         minLength:5,
         select:false
     },
-    refreshToken:String, 
+    refreshToken:{
+       type: String,
+       select:false
+    }, 
 })
 
 

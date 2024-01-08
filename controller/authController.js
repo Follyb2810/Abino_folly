@@ -24,7 +24,13 @@ const SignUp = async (req, res) => {
 
         // Create a new user
         const newUser = await User.create({
-            username, Age, location, skin, image, email, password: hashPwd,
+            username,
+            Age,
+            location,
+            skin,
+            image: image || 'https://shorturl.at/cgCEU', // Use default value if image is empty
+            email,
+            password: hashPwd,
         });
 
         // Prepare user data for response
